@@ -1,0 +1,61 @@
+Hello STAKEHOLDER,
+
+When analyzing the quality of our data, there are 2 key aspects we look at: completeness and validity. 
+
+Completeness answers the question: do we have all the data we expect to have? Ideally, we have all data fields (columns) for all records 
+in our datasets, but this is usually never the case. However, for certain data columns, we can reasonably expect them to be
+available 100% of the time.
+
+Key findings about data completeness:
+
+    1. PRODUCTS 
+        - We expect the BARCODE and CATEGORY_1 fields to be 100% available.
+        - BARCODE field is missing in 0.48 of all records. It acts as an unique identifier for all products.
+        - CATEGORY_1 field is missing in 0.01% of all records. It is also a very important field to identify each product.
+    2. TRANSACTIONS 
+        - We expect all fields besides the BARCODE field to be 100% available and they are.
+    3. USERS 
+        - We expect the ID and CREATED_DATE fields to be 100% available and they are.
+
+Validity answers the question: does available data make sense for the data field? For example, we expect a quantity value to always be 
+a number.
+
+Key findings about data validity:
+
+    1. PRODUCTS 
+        - Some data fields have default values that can be used to achieve 100% data completion if we otherwise do not have that data. 
+          For example, the CATEGORY columns have a default value of `Needs Review`.
+    2. TRANSACTIONS 
+        - 51.1% of all records are duplicates. Each record should have a unique RECEIPT_ID.
+        - 25% of FINAL_QUANTITY values is `zero`. This field should never be zero because this indicates there was no sale of anything.
+        - All values should be represented as a whole number (0.22% of all records do not follow this rule)
+    3. USERS 
+        - 1.3% of all available birthday data is probably inaccurate because it a default value. 1970-01-01 is a value that
+          represents the beginning of Unix time (universal coordinated time). A high percentage of users are unlikely to have the exact
+          same birthday.
+       - The GENDER column has unique values that represent the same thing. For example, there is `prefer_not_to_say` and 
+         `Prefer not to say` which represent the same thing. There should be one unique version of each value.
+
+Despite the data quality issues we see, we can still find the following trend:
+    Of users that have had their account for at least 6 months, the top 5 brands by sales are:
+        1. CVS
+        2. Dove
+        3. Trident
+        4. Coors Light
+        5. Tresemme
+
+Questions about the data to make more sense of it:
+    1. For our PRODUCTS data, where do we get the values for most of our data fields? Are they provided to us or do we logically deduct 
+       these values ourselves?
+    2. Does each record in our TRANSACTIONS data represent one receipt or one item in a receipt? For the sake of having good
+       data quality, I assumed each record represents one receipt. This way, each record has a unique RECEIPT_ID. However, the 
+       existence of the FINAL_QUANTITY and PRODUCT fields suggest the other option.
+       - Follow Up: If each record represents a specific item in a receipt, where is the other ID column that represents each unique
+         record? Or is there another table entirely that holds this data?
+    3. For our USERS data, do users have the option to not provide any of the data elements?
+
+Thank you for reviewing these findings.
+
+Sol Kim
+
+

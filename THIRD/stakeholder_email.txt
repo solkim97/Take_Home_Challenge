@@ -13,7 +13,7 @@ Key findings about data completeness:
         - BARCODE field is missing in 0.48 of all records. It acts as an unique identifier for all products.
         - CATEGORY_1 field is missing in 0.01% of all records. It is also a very important field to identify each product.
     2. TRANSACTIONS 
-        - We expect all fields besides the BARCODE field to be 100% available and they are.
+        - The FINAL_SALE column doesn't have any NULL values, but 25% of records have blank values (an empty string).
     3. USERS 
         - We expect the ID and CREATED_DATE fields to be 100% available and they are.
 

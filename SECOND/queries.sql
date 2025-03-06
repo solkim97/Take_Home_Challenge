@@ -16,7 +16,7 @@ ANSWER: 1. DOVE - 3
         3. GREAT VALUE - 2
         3. HERSHEY'S - 2
         3. TRIDENT - 2
-        3. COCA-COLA -2
+        3. COCA-COLA - 2
 Query below
 */
 
@@ -61,10 +61,10 @@ Assumption 1: This is based on final sales from transactions in unique RECEIPT_I
 Assumption 2: To remove duplicate RECEIPT_IDs, we keep the highest FINAL_SALE value
 Assumption 3: Because we have a clear Top 5 based on final_sale amounts, using LIMIT 5 instead of a RANK function
 ANSWER: 1. CVS - $72.00
-        2.	DOVE - $30.91
-        3.	TRIDENT - $23.36
-        4.	COORS LIGHT - $17.48
-        5.	TRESEMMÉ - $14.58
+        2. DOVE - $30.91
+        3. TRIDENT - $23.36
+        4. COORS LIGHT - $17.48
+        5. TRESEMMÉ - $14.58
 Query below
 */
 WITH deduped_transactions AS  --creating a transactions CTE without duplicates
